@@ -1,4 +1,5 @@
-version: '3.8'
+# OBSOLETE
+# version: '3.8'
 
 services:
   ambev.developerevaluation.webapi:
