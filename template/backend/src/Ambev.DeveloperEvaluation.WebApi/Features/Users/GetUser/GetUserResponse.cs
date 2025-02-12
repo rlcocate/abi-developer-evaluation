@@ -36,4 +36,14 @@ public class GetUserResponse
     /// The current status of the user
     /// </summary>
     public UserStatus Status { get; set; }
+
+    /// <summary>
+    /// The date the user was created
+    /// </summary>
+    public DateTime CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date the user was updated
+    /// </summary>
+    public DateTime? UpdatedAt { get; set; }
 }

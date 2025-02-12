@@ -59,6 +59,12 @@ namespace Ambev.DeveloperEvaluation.ORM.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)");
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp");
+
                     b.HasKey("Id");
 
                     b.ToTable("Users", (string)null);
