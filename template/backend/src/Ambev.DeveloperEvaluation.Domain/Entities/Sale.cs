@@ -64,7 +64,7 @@ namespace Ambev.DeveloperEvaluation.Domain.Entities
         }
 
         /// <summary>
-        /// Performs validation of the sale entity using the UserValidator rules.
+        /// Performs validation of the sale entity using the SaleValidator rules.
         /// </summary>
         /// <returns>
         /// A <see cref="ValidationResultDetail"/> containing:
