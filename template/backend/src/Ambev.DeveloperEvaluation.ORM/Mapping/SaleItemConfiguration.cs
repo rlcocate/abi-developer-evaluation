@@ -11,12 +11,12 @@ namespace Ambev.DeveloperEvaluation.ORM.Mapping
             builder.ToTable("SaleItems");
 
             builder.HasKey(si => si.Id);
-            builder.Property(si => si.Id).HasColumnType("serial");
+            builder.Property(si => si.Id).HasColumnType("uuid").HasDefaultValueSql("gen_random_uuid()");
 
             builder.HasOne(si => si.Sale)
-                   .WithMany()
-                   .HasForeignKey("SaleId")
-                   .OnDelete(DeleteBehavior.Cascade);
+                .WithMany(si => si.Items)
+                .HasForeignKey(si => si.SaleId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasOne(si => si.Product)
                    .WithMany()
@@ -28,5 +28,4 @@ namespace Ambev.DeveloperEvaluation.ORM.Mapping
             builder.Property(si => si.TotalAmount).IsRequired().HasColumnType("numeric");
         }
     }
-
 }

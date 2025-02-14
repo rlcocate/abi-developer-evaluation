@@ -1,7 +1,6 @@
 ﻿using Ambev.DeveloperEvaluation.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System.Reflection.Emit;
 
 namespace Ambev.DeveloperEvaluation.ORM.Mapping
 {
@@ -12,9 +11,9 @@ namespace Ambev.DeveloperEvaluation.ORM.Mapping
             builder.ToTable("Sales");
 
             builder.HasKey(s => s.Id);
-            builder.Property(s => s.Id).HasColumnType("serial");
+            builder.Property(s => s.Id).HasColumnType("uuid").HasDefaultValueSql("gen_random_uuid()");
 
-            builder.Property(s => s.SaleNumber).IsRequired().HasMaxLength(255);
+            builder.Property(s => s.SaleNumber).IsRequired().HasMaxLength(50);
             builder.Property(s => s.SaleDate).IsRequired().HasColumnType("date");
 
             builder.HasOne(s => s.Customer)
@@ -29,8 +28,7 @@ namespace Ambev.DeveloperEvaluation.ORM.Mapping
 
             builder.Property(s => s.TotalSaleAmount).IsRequired().HasColumnType("decimal");
 
-            builder.Property(s => s.Status).IsRequired();
-            builder.ToTable(s => s.HasCheckConstraint("CK_Sales_Status", "Status IN (1, 2)"));
+            builder.Property(s => s.Status).HasConversion<string>().IsRequired().HasMaxLength(20);
         }
     }
 }

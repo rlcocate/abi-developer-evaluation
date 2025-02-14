@@ -11,7 +11,8 @@ namespace Ambev.DeveloperEvaluation.ORM.Mapping
             builder.ToTable("Branches");
 
             builder.HasKey(b => b.Id);
-            builder.Property(b => b.Id).HasColumnType("serial");
+            builder.Property(b => b.Id).HasColumnType("uuid").HasDefaultValueSql("gen_random_uuid()");
+
             builder.Property(b => b.BranchName).IsRequired().HasMaxLength(150);
             builder.Property(b => b.Location).HasMaxLength(100);
         }
