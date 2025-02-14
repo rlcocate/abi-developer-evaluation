@@ -24,7 +24,12 @@ namespace Ambev.DeveloperEvaluation.Domain.Validation
                 .GreaterThan(0).WithMessage("Total sale amount must be greater than 0.");
 
             RuleFor(sale => sale.Status)
-                .NotEqual(SaleStatus.Unknown).WithMessage("Sale status cannot be 'Unknown'.");
+                .NotEqual(SaleStatus.Unknown).WithMessage("Sale status cannot be unknown.");
+
+            RuleFor(sale => sale.Status)
+                .IsInEnum().WithMessage("Sale status cannot be unknown.");
+
+            RuleForEach(sale => sale.Items).SetValidator(new SaleItemValidator());
         }
     }
 }

@@ -24,16 +24,26 @@ namespace Ambev.DeveloperEvaluation.Domain.Entities
         public DateTime SaleDate { get; set; }
 
         /// <summary>
+        /// Gets the customer's id referenced.
+        /// </summary>
+        public Guid CustomerId { get; set; }
+
+        /// <summary>
         /// Gets the customer's information.
         /// Required.
         /// </summary>
-        public required Customer Customer { get; set; }
+        public Customer Customer { get; set; } = null!;
+
+        /// <summary>
+        /// Gets the branch's id referenced.
+        /// </summary>
+        public Guid BranchId { get; set; }
 
         /// <summary>
         /// Gets the branch's information.
         /// Required.
         /// </summary>
-        public required Branch Branch { get; set; }
+        public Branch Branch { get; set; } = null!;
 
         /// <summary>
         /// Gets the total sale amount.
@@ -46,6 +56,11 @@ namespace Ambev.DeveloperEvaluation.Domain.Entities
         /// Cannot be unknown.
         /// </summary>
         public SaleStatus Status { get; set; }
+
+        /// <summary>
+        /// Gets the items of sale.
+        /// </summary>
+        public List<SaleItem> Items { get; set; } = new List<SaleItem>();
 
         /// <summary>
         /// Mark the sale status as cancelled.
@@ -73,13 +88,12 @@ namespace Ambev.DeveloperEvaluation.Domain.Entities
         /// </returns>
         /// <remarks>
         /// <listheader>The validation includes checking:</listheader>
-        /// <list type="bullet">Sale number not empty</list>
-        /// <list type="bullet">Sale date not empty</list>
-        /// <list type="bullet">Customer id not empty</list>
-        /// <list type="bullet">Customer required</list>
-        /// <list type="bullet">Branch id not empty</list>
-        /// <list type="bullet">Total sale amount grater than 0</list>
-        /// <list type="bullet">Sale status not unknown</list>
+        /// <list type="bullet">Sale number needs to be filled</list>
+        /// <list type="bullet">Sale date needs to be filled</list>
+        /// <list type="bullet">Customer information is required</list>
+        /// <list type="bullet">Branch information is required</list>
+        /// <list type="bullet">Total sale amount must be greater than 0</list>
+        /// <list type="bullet">Sale status cannot be unknown</list>
         /// </remarks>
         public ValidationResultDetail Validate()
         {
