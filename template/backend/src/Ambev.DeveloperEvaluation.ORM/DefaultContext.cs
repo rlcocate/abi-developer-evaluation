@@ -103,11 +103,6 @@ public static class SeedData
             new Customer { Id = Guid.NewGuid(), FirstName = "Ellen", LastName = "Ripley", Email = "ellen.ripley@example.com", Phone = "(11) 96555-1979", CreatedAt = DateTime.UtcNow },
             new Customer { Id = Guid.NewGuid(), FirstName = "John", LastName = "Doe", Email = "john.doe@example.com", Phone = "(66) 43555-1970", CreatedAt = DateTime.UtcNow },
             new Customer { Id = Guid.NewGuid(), FirstName = "Jane", LastName = "Doe", Email = "jane.doe@example.com", Phone = "(66) 43555-1971", CreatedAt = DateTime.UtcNow }
-            //new Customer { FirstName = "Marty", LastName = "McFly", Email = "marty.mcfly@example.com", Phone = "(11) 55555-1985", CreatedAt = DateTime.UtcNow },
-            //new Customer { FirstName = "Sarah", LastName = "Connor", Email = "sarah.connor@example.com", Phone = "(11) 55555-1984", CreatedAt = DateTime.UtcNow },
-            //new Customer { FirstName = "Ellen", LastName = "Ripley", Email = "ellen.ripley@example.com", Phone = "(11) 96555-1979", CreatedAt = DateTime.UtcNow },
-            //new Customer { FirstName = "John", LastName = "Doe", Email = "john.doe@example.com", Phone = "(66) 43555-1970", CreatedAt = DateTime.UtcNow },
-            //new Customer { FirstName = "Jane", LastName = "Doe", Email = "jane.doe@example.com", Phone = "(66) 43555-1971", CreatedAt = DateTime.UtcNow }
         };
 
         modelBuilder.Entity<Customer>().HasData(customers);
@@ -117,9 +112,6 @@ public static class SeedData
             new Branch { Id = Guid.NewGuid(), BranchName = "Cervejaria Alpha", Location = "São Paulo" },
             new Branch { Id = Guid.NewGuid(), BranchName = "Cervejaria Beta", Location = "Rio de Janeiro" },
             new Branch { Id = Guid.NewGuid(), BranchName = "Cervejaria Gamma", Location = "Belo Horizonte" }
-            //new Branch { BranchName = "Cervejaria Alpha", Location = "São Paulo" },
-            //new Branch { BranchName = "Cervejaria Beta", Location = "Rio de Janeiro" },
-            //new Branch { BranchName = "Cervejaria Gamma", Location = "Belo Horizonte" }
         };
 
         modelBuilder.Entity<Branch>().HasData(branches);
@@ -129,9 +121,6 @@ public static class SeedData
             new Product { Id = Guid.NewGuid(), ProductName = "Cerveja IPA", UnitPrice = 20.00M },
             new Product { Id = Guid.NewGuid(), ProductName = "Cerveja Stout", UnitPrice = 25.00M },
             new Product { Id = Guid.NewGuid(), ProductName = "Cerveja Lager", UnitPrice = 15.00M }
-            //new Product { ProductName = "Cerveja IPA", UnitPrice = 20.00M },
-            //new Product { ProductName = "Cerveja Stout", UnitPrice = 25.00M },
-            //new Product { ProductName = "Cerveja Lager", UnitPrice = 15.00M }
         };
 
         modelBuilder.Entity<Product>().HasData(products);
