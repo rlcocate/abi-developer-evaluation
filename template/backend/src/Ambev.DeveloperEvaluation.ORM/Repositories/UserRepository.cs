@@ -7,7 +7,7 @@ namespace Ambev.DeveloperEvaluation.ORM.Repositories;
 /// <summary>
 /// Implementation of IUserRepository using Entity Framework Core
 /// </summary>
-public class UserRepository : IUserRepository
+public class UserRepository : IUserRepository, IListUserRepository
 {
     private readonly DefaultContext _context;
 
@@ -42,6 +42,12 @@ public class UserRepository : IUserRepository
     public async Task<User?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
     {
         return await _context.Users.FirstOrDefaultAsync(o=> o.Id == id, cancellationToken);
+    }
+
+    public async Task<List<User?>> ListAsync(CancellationToken cancellationToken = default)
+    {
+        return await _context.Users
+            .Where(user => user != null).ToListAsync(cancellationToken);
     }
 
     /// <summary>
