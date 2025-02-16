@@ -7,7 +7,7 @@ namespace Ambev.DeveloperEvaluation.Domain.Validation
     {
         public ProductValidator()
         {
-            RuleFor(branch => branch.ProductName)
+            RuleFor(branch => branch.Name)
                 .NotEmpty()
                 .MinimumLength(3).WithMessage("Branch name must be at least 3 characters long.")
                 .MaximumLength(150).WithMessage("Branch name cannot be longer than 50 characters.");
