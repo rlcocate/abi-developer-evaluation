@@ -6,7 +6,7 @@ namespace Ambev.DeveloperEvaluation.Domain.Entities
 {
     public class Branch : BaseEntity
     {
-        public string BranchName { get; set; } = string.Empty;
+        public string Name { get; set; } = string.Empty;
         public string Location { get; set; } = string.Empty;
 
         /// <summary>

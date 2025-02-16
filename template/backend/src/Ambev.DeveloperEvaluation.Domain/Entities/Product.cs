@@ -6,7 +6,7 @@ namespace Ambev.DeveloperEvaluation.Domain.Entities
 {
     public class Product: BaseEntity
     {
-        public string ProductName { get; set; } = string.Empty;
+        public string Name { get; set; } = string.Empty;
         public decimal UnitPrice { get; set; }
 
         /// <summary>
