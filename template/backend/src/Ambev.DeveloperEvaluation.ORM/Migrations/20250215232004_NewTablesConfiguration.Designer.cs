@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Ambev.DeveloperEvaluation.ORM.Migrations
 {
     [DbContext(typeof(DefaultContext))]
-    [Migration("20250214161138_NewTablesConfiguration")]
+    [Migration("20250215232004_NewTablesConfiguration")]
     partial class NewTablesConfiguration
     {
         /// <inheritdoc />
@@ -32,15 +32,15 @@ namespace Ambev.DeveloperEvaluation.ORM.Migrations
                         .HasColumnType("uuid")
                         .HasDefaultValueSql("gen_random_uuid()");
 
-                    b.Property<string>("BranchName")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("character varying(150)");
-
                     b.Property<string>("Location")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("character varying(150)");
 
                     b.HasKey("Id");
 
@@ -49,21 +49,21 @@ namespace Ambev.DeveloperEvaluation.ORM.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("efa78f83-59bf-4802-bbb2-7851b42cd8bc"),
-                            BranchName = "Cervejaria Alpha",
-                            Location = "São Paulo"
+                            Id = new Guid("42f52c7c-c384-4940-90aa-473ad27ccf70"),
+                            Location = "São Paulo",
+                            Name = "Cervejaria Alpha"
                         },
                         new
                         {
-                            Id = new Guid("633847d6-b6ba-47b5-a356-6cb1148a31f2"),
-                            BranchName = "Cervejaria Beta",
-                            Location = "Rio de Janeiro"
+                            Id = new Guid("d4ee3913-6610-4680-aa9b-0ad1d5a5e4ec"),
+                            Location = "Rio de Janeiro",
+                            Name = "Cervejaria Beta"
                         },
                         new
                         {
-                            Id = new Guid("bf09bfe9-9c9a-4b63-b5bb-e730c3cb554d"),
-                            BranchName = "Cervejaria Gamma",
-                            Location = "Belo Horizonte"
+                            Id = new Guid("acf14adc-0f5b-41f5-af82-fb1590175751"),
+                            Location = "Belo Horizonte",
+                            Name = "Cervejaria Gamma"
                         });
                 });
 
@@ -107,8 +107,8 @@ namespace Ambev.DeveloperEvaluation.ORM.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("5a236e83-530e-473b-b9f0-59c0a4ff95d6"),
-                            CreatedAt = new DateTime(2025, 2, 14, 16, 11, 38, 34, DateTimeKind.Utc).AddTicks(8495),
+                            Id = new Guid("772043ab-e6a8-4810-9b9f-55b17c1f6093"),
+                            CreatedAt = new DateTime(2025, 2, 15, 23, 20, 3, 407, DateTimeKind.Utc).AddTicks(5795),
                             Email = "marty.mcfly@example.com",
                             FirstName = "Marty",
                             LastName = "McFly",
@@ -116,8 +116,8 @@ namespace Ambev.DeveloperEvaluation.ORM.Migrations
                         },
                         new
                         {
-                            Id = new Guid("0fe5c3bf-1505-4985-ab26-2940226a034b"),
-                            CreatedAt = new DateTime(2025, 2, 14, 16, 11, 38, 34, DateTimeKind.Utc).AddTicks(8544),
+                            Id = new Guid("28365b82-b6f5-42b6-9bf6-7fa4ec25cc60"),
+                            CreatedAt = new DateTime(2025, 2, 15, 23, 20, 3, 407, DateTimeKind.Utc).AddTicks(5799),
                             Email = "sarah.connor@example.com",
                             FirstName = "Sarah",
                             LastName = "Connor",
@@ -125,8 +125,8 @@ namespace Ambev.DeveloperEvaluation.ORM.Migrations
                         },
                         new
                         {
-                            Id = new Guid("2687ed9b-55ab-4d2f-93be-dd395efa71b5"),
-                            CreatedAt = new DateTime(2025, 2, 14, 16, 11, 38, 34, DateTimeKind.Utc).AddTicks(8546),
+                            Id = new Guid("564124a7-c362-4581-9515-32462ed6ae89"),
+                            CreatedAt = new DateTime(2025, 2, 15, 23, 20, 3, 407, DateTimeKind.Utc).AddTicks(5802),
                             Email = "ellen.ripley@example.com",
                             FirstName = "Ellen",
                             LastName = "Ripley",
@@ -134,8 +134,8 @@ namespace Ambev.DeveloperEvaluation.ORM.Migrations
                         },
                         new
                         {
-                            Id = new Guid("3bbf47b0-10a6-4dcd-857a-f52750260296"),
-                            CreatedAt = new DateTime(2025, 2, 14, 16, 11, 38, 34, DateTimeKind.Utc).AddTicks(8549),
+                            Id = new Guid("d55e14bb-096c-4728-b82e-5a82db940a82"),
+                            CreatedAt = new DateTime(2025, 2, 15, 23, 20, 3, 407, DateTimeKind.Utc).AddTicks(5850),
                             Email = "john.doe@example.com",
                             FirstName = "John",
                             LastName = "Doe",
@@ -143,8 +143,8 @@ namespace Ambev.DeveloperEvaluation.ORM.Migrations
                         },
                         new
                         {
-                            Id = new Guid("fa0199d1-a031-4e83-819b-ff935c1ea924"),
-                            CreatedAt = new DateTime(2025, 2, 14, 16, 11, 38, 34, DateTimeKind.Utc).AddTicks(8552),
+                            Id = new Guid("c2b2006a-fa9c-4f5b-9186-d41edfeac055"),
+                            CreatedAt = new DateTime(2025, 2, 15, 23, 20, 3, 407, DateTimeKind.Utc).AddTicks(5855),
                             Email = "jane.doe@example.com",
                             FirstName = "Jane",
                             LastName = "Doe",
@@ -159,7 +159,7 @@ namespace Ambev.DeveloperEvaluation.ORM.Migrations
                         .HasColumnType("uuid")
                         .HasDefaultValueSql("gen_random_uuid()");
 
-                    b.Property<string>("ProductName")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(150)
                         .HasColumnType("character varying(150)");
@@ -174,20 +174,20 @@ namespace Ambev.DeveloperEvaluation.ORM.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("65f47bfa-848b-4be6-ba19-a26fba4383be"),
-                            ProductName = "Cerveja IPA",
+                            Id = new Guid("ca7f8f7a-eea7-420f-88b9-003085a542c4"),
+                            Name = "Cerveja IPA",
                             UnitPrice = 20.00m
                         },
                         new
                         {
-                            Id = new Guid("eb693d8d-753c-46ee-9ebb-1c439b3f6401"),
-                            ProductName = "Cerveja Stout",
+                            Id = new Guid("9294b1bb-887d-460c-bb67-7a175c11d99f"),
+                            Name = "Cerveja Stout",
                             UnitPrice = 25.00m
                         },
                         new
                         {
-                            Id = new Guid("2e0dd60a-a35e-415b-b206-6c7e5f3f4a1c"),
-                            ProductName = "Cerveja Lager",
+                            Id = new Guid("798d1478-f4eb-44f1-9cc0-ef6072d66929"),
+                            Name = "Cerveja Lager",
                             UnitPrice = 15.00m
                         });
                 });
@@ -232,50 +232,50 @@ namespace Ambev.DeveloperEvaluation.ORM.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("9a0c10a6-ef7e-46c7-a672-b0e0b0927ee8"),
-                            BranchId = new Guid("efa78f83-59bf-4802-bbb2-7851b42cd8bc"),
-                            CustomerId = new Guid("5a236e83-530e-473b-b9f0-59c0a4ff95d6"),
-                            SaleDate = new DateTime(2025, 2, 14, 16, 11, 38, 34, DateTimeKind.Utc).AddTicks(9009),
+                            Id = new Guid("7f6e73d8-1b61-4459-a1df-a374c0939c42"),
+                            BranchId = new Guid("42f52c7c-c384-4940-90aa-473ad27ccf70"),
+                            CustomerId = new Guid("772043ab-e6a8-4810-9b9f-55b17c1f6093"),
+                            SaleDate = new DateTime(2025, 2, 15, 23, 20, 3, 407, DateTimeKind.Utc).AddTicks(6372),
                             SaleNumber = "S0001",
                             Status = "NotCancelled",
                             TotalSaleAmount = 80.00m
                         },
                         new
                         {
-                            Id = new Guid("6611af78-5c48-4f06-8ae8-9ed161b1f6f6"),
-                            BranchId = new Guid("633847d6-b6ba-47b5-a356-6cb1148a31f2"),
-                            CustomerId = new Guid("0fe5c3bf-1505-4985-ab26-2940226a034b"),
-                            SaleDate = new DateTime(2025, 2, 14, 16, 11, 38, 34, DateTimeKind.Utc).AddTicks(9018),
+                            Id = new Guid("87de74ae-0012-4555-9d20-1555a5d2b276"),
+                            BranchId = new Guid("d4ee3913-6610-4680-aa9b-0ad1d5a5e4ec"),
+                            CustomerId = new Guid("28365b82-b6f5-42b6-9bf6-7fa4ec25cc60"),
+                            SaleDate = new DateTime(2025, 2, 15, 23, 20, 3, 407, DateTimeKind.Utc).AddTicks(6378),
                             SaleNumber = "S0002",
                             Status = "NotCancelled",
                             TotalSaleAmount = 240.00m
                         },
                         new
                         {
-                            Id = new Guid("4330fabe-a073-47ba-b0d5-3ef3d493f27f"),
-                            BranchId = new Guid("bf09bfe9-9c9a-4b63-b5bb-e730c3cb554d"),
-                            CustomerId = new Guid("2687ed9b-55ab-4d2f-93be-dd395efa71b5"),
-                            SaleDate = new DateTime(2025, 2, 14, 16, 11, 38, 34, DateTimeKind.Utc).AddTicks(9021),
+                            Id = new Guid("c9bfb56e-2220-4a9a-8b02-3165d1a8a54e"),
+                            BranchId = new Guid("acf14adc-0f5b-41f5-af82-fb1590175751"),
+                            CustomerId = new Guid("564124a7-c362-4581-9515-32462ed6ae89"),
+                            SaleDate = new DateTime(2025, 2, 15, 23, 20, 3, 407, DateTimeKind.Utc).AddTicks(6381),
                             SaleNumber = "S0003",
                             Status = "NotCancelled",
                             TotalSaleAmount = 200.00m
                         },
                         new
                         {
-                            Id = new Guid("4c0befa3-c729-443b-a5f7-c418fb288646"),
-                            BranchId = new Guid("efa78f83-59bf-4802-bbb2-7851b42cd8bc"),
-                            CustomerId = new Guid("3bbf47b0-10a6-4dcd-857a-f52750260296"),
-                            SaleDate = new DateTime(2025, 2, 14, 16, 11, 38, 34, DateTimeKind.Utc).AddTicks(9024),
+                            Id = new Guid("a16b758b-2a2b-43cd-b290-34679290d274"),
+                            BranchId = new Guid("42f52c7c-c384-4940-90aa-473ad27ccf70"),
+                            CustomerId = new Guid("d55e14bb-096c-4728-b82e-5a82db940a82"),
+                            SaleDate = new DateTime(2025, 2, 15, 23, 20, 3, 407, DateTimeKind.Utc).AddTicks(6385),
                             SaleNumber = "S0004",
                             Status = "NotCancelled",
                             TotalSaleAmount = 100.00m
                         },
                         new
                         {
-                            Id = new Guid("43746cdf-eb34-441c-a0eb-a9383287fc38"),
-                            BranchId = new Guid("633847d6-b6ba-47b5-a356-6cb1148a31f2"),
-                            CustomerId = new Guid("fa0199d1-a031-4e83-819b-ff935c1ea924"),
-                            SaleDate = new DateTime(2025, 2, 14, 16, 11, 38, 34, DateTimeKind.Utc).AddTicks(9028),
+                            Id = new Guid("034c5068-7e9b-43f7-9db8-7304309719a3"),
+                            BranchId = new Guid("d4ee3913-6610-4680-aa9b-0ad1d5a5e4ec"),
+                            CustomerId = new Guid("c2b2006a-fa9c-4f5b-9186-d41edfeac055"),
+                            SaleDate = new DateTime(2025, 2, 15, 23, 20, 3, 407, DateTimeKind.Utc).AddTicks(6388),
                             SaleNumber = "S0005",
                             Status = "NotCancelled",
                             TotalSaleAmount = 300.00m
@@ -315,47 +315,47 @@ namespace Ambev.DeveloperEvaluation.ORM.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("5fbff848-ea92-4699-81ee-780aa1c6d242"),
+                            Id = new Guid("b32dfe36-862c-45d8-9d1f-5823f4ffa596"),
                             Discount = 0.10m,
-                            ProductId = new Guid("65f47bfa-848b-4be6-ba19-a26fba4383be"),
+                            ProductId = new Guid("ca7f8f7a-eea7-420f-88b9-003085a542c4"),
                             Quantity = 4,
-                            SaleId = new Guid("9a0c10a6-ef7e-46c7-a672-b0e0b0927ee8"),
+                            SaleId = new Guid("7f6e73d8-1b61-4459-a1df-a374c0939c42"),
                             TotalAmount = 72.0000m
                         },
                         new
                         {
-                            Id = new Guid("12649b5b-add1-4b1c-9b1c-3db6a82b0dce"),
+                            Id = new Guid("18469eb8-36b5-473c-9c52-e8dba8992198"),
                             Discount = 0.20m,
-                            ProductId = new Guid("eb693d8d-753c-46ee-9ebb-1c439b3f6401"),
+                            ProductId = new Guid("9294b1bb-887d-460c-bb67-7a175c11d99f"),
                             Quantity = 10,
-                            SaleId = new Guid("6611af78-5c48-4f06-8ae8-9ed161b1f6f6"),
+                            SaleId = new Guid("87de74ae-0012-4555-9d20-1555a5d2b276"),
                             TotalAmount = 200.0000m
                         },
                         new
                         {
-                            Id = new Guid("ffeafcc2-f2a7-4b90-92f8-ff2ac65b8fa9"),
+                            Id = new Guid("970082f1-5fb3-4299-a666-712afb76b97f"),
                             Discount = 0.20m,
-                            ProductId = new Guid("2e0dd60a-a35e-415b-b206-6c7e5f3f4a1c"),
+                            ProductId = new Guid("798d1478-f4eb-44f1-9cc0-ef6072d66929"),
                             Quantity = 13,
-                            SaleId = new Guid("4330fabe-a073-47ba-b0d5-3ef3d493f27f"),
+                            SaleId = new Guid("c9bfb56e-2220-4a9a-8b02-3165d1a8a54e"),
                             TotalAmount = 156.0000m
                         },
                         new
                         {
-                            Id = new Guid("83169228-14f7-41d4-be25-ae1f9988cf8d"),
+                            Id = new Guid("4c2192ee-1512-4125-8c09-e867c08d8ac9"),
                             Discount = 0.00m,
-                            ProductId = new Guid("65f47bfa-848b-4be6-ba19-a26fba4383be"),
+                            ProductId = new Guid("ca7f8f7a-eea7-420f-88b9-003085a542c4"),
                             Quantity = 3,
-                            SaleId = new Guid("4c0befa3-c729-443b-a5f7-c418fb288646"),
+                            SaleId = new Guid("a16b758b-2a2b-43cd-b290-34679290d274"),
                             TotalAmount = 60.00m
                         },
                         new
                         {
-                            Id = new Guid("2eb756d4-190a-47ea-bcd9-156727788929"),
+                            Id = new Guid("f93805f8-bc40-47ed-a447-5a5da6f673e6"),
                             Discount = 0.20m,
-                            ProductId = new Guid("eb693d8d-753c-46ee-9ebb-1c439b3f6401"),
+                            ProductId = new Guid("9294b1bb-887d-460c-bb67-7a175c11d99f"),
                             Quantity = 15,
-                            SaleId = new Guid("43746cdf-eb34-441c-a0eb-a9383287fc38"),
+                            SaleId = new Guid("034c5068-7e9b-43f7-9db8-7304309719a3"),
                             TotalAmount = 300.0000m
                         });
                 });

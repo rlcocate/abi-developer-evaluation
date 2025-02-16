@@ -31,7 +31,7 @@ namespace Ambev.DeveloperEvaluation.ORM.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false, defaultValueSql: "gen_random_uuid()"),
-                    BranchName = table.Column<string>(type: "character varying(150)", maxLength: 150, nullable: false),
+                    Name = table.Column<string>(type: "character varying(150)", maxLength: 150, nullable: false),
                     Location = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false)
                 },
                 constraints: table =>
@@ -61,7 +61,7 @@ namespace Ambev.DeveloperEvaluation.ORM.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false, defaultValueSql: "gen_random_uuid()"),
-                    ProductName = table.Column<string>(type: "character varying(150)", maxLength: 150, nullable: false),
+                    Name = table.Column<string>(type: "character varying(150)", maxLength: 150, nullable: false),
                     UnitPrice = table.Column<decimal>(type: "decimal", nullable: false)
                 },
                 constraints: table =>
@@ -128,12 +128,12 @@ namespace Ambev.DeveloperEvaluation.ORM.Migrations
 
             migrationBuilder.InsertData(
                 table: "Branches",
-                columns: new[] { "Id", "BranchName", "Location" },
+                columns: new[] { "Id", "Location", "Name" },
                 values: new object[,]
                 {
-                    { new Guid("633847d6-b6ba-47b5-a356-6cb1148a31f2"), "Cervejaria Beta", "Rio de Janeiro" },
-                    { new Guid("bf09bfe9-9c9a-4b63-b5bb-e730c3cb554d"), "Cervejaria Gamma", "Belo Horizonte" },
-                    { new Guid("efa78f83-59bf-4802-bbb2-7851b42cd8bc"), "Cervejaria Alpha", "São Paulo" }
+                    { new Guid("42f52c7c-c384-4940-90aa-473ad27ccf70"), "São Paulo", "Cervejaria Alpha" },
+                    { new Guid("acf14adc-0f5b-41f5-af82-fb1590175751"), "Belo Horizonte", "Cervejaria Gamma" },
+                    { new Guid("d4ee3913-6610-4680-aa9b-0ad1d5a5e4ec"), "Rio de Janeiro", "Cervejaria Beta" }
                 });
 
             migrationBuilder.InsertData(
@@ -141,21 +141,21 @@ namespace Ambev.DeveloperEvaluation.ORM.Migrations
                 columns: new[] { "Id", "CreatedAt", "Email", "FirstName", "LastName", "Phone", "UpdatedAt" },
                 values: new object[,]
                 {
-                    { new Guid("0fe5c3bf-1505-4985-ab26-2940226a034b"), new DateTime(2025, 2, 14, 16, 11, 38, 34, DateTimeKind.Utc).AddTicks(8544), "sarah.connor@example.com", "Sarah", "Connor", "(11) 55555-1984", null },
-                    { new Guid("2687ed9b-55ab-4d2f-93be-dd395efa71b5"), new DateTime(2025, 2, 14, 16, 11, 38, 34, DateTimeKind.Utc).AddTicks(8546), "ellen.ripley@example.com", "Ellen", "Ripley", "(11) 96555-1979", null },
-                    { new Guid("3bbf47b0-10a6-4dcd-857a-f52750260296"), new DateTime(2025, 2, 14, 16, 11, 38, 34, DateTimeKind.Utc).AddTicks(8549), "john.doe@example.com", "John", "Doe", "(66) 43555-1970", null },
-                    { new Guid("5a236e83-530e-473b-b9f0-59c0a4ff95d6"), new DateTime(2025, 2, 14, 16, 11, 38, 34, DateTimeKind.Utc).AddTicks(8495), "marty.mcfly@example.com", "Marty", "McFly", "(11) 55555-1985", null },
-                    { new Guid("fa0199d1-a031-4e83-819b-ff935c1ea924"), new DateTime(2025, 2, 14, 16, 11, 38, 34, DateTimeKind.Utc).AddTicks(8552), "jane.doe@example.com", "Jane", "Doe", "(66) 43555-1971", null }
+                    { new Guid("28365b82-b6f5-42b6-9bf6-7fa4ec25cc60"), new DateTime(2025, 2, 15, 23, 20, 3, 407, DateTimeKind.Utc).AddTicks(5799), "sarah.connor@example.com", "Sarah", "Connor", "(11) 55555-1984", null },
+                    { new Guid("564124a7-c362-4581-9515-32462ed6ae89"), new DateTime(2025, 2, 15, 23, 20, 3, 407, DateTimeKind.Utc).AddTicks(5802), "ellen.ripley@example.com", "Ellen", "Ripley", "(11) 96555-1979", null },
+                    { new Guid("772043ab-e6a8-4810-9b9f-55b17c1f6093"), new DateTime(2025, 2, 15, 23, 20, 3, 407, DateTimeKind.Utc).AddTicks(5795), "marty.mcfly@example.com", "Marty", "McFly", "(11) 55555-1985", null },
+                    { new Guid("c2b2006a-fa9c-4f5b-9186-d41edfeac055"), new DateTime(2025, 2, 15, 23, 20, 3, 407, DateTimeKind.Utc).AddTicks(5855), "jane.doe@example.com", "Jane", "Doe", "(66) 43555-1971", null },
+                    { new Guid("d55e14bb-096c-4728-b82e-5a82db940a82"), new DateTime(2025, 2, 15, 23, 20, 3, 407, DateTimeKind.Utc).AddTicks(5850), "john.doe@example.com", "John", "Doe", "(66) 43555-1970", null }
                 });
 
             migrationBuilder.InsertData(
                 table: "Products",
-                columns: new[] { "Id", "ProductName", "UnitPrice" },
+                columns: new[] { "Id", "Name", "UnitPrice" },
                 values: new object[,]
                 {
-                    { new Guid("2e0dd60a-a35e-415b-b206-6c7e5f3f4a1c"), "Cerveja Lager", 15.00m },
-                    { new Guid("65f47bfa-848b-4be6-ba19-a26fba4383be"), "Cerveja IPA", 20.00m },
-                    { new Guid("eb693d8d-753c-46ee-9ebb-1c439b3f6401"), "Cerveja Stout", 25.00m }
+                    { new Guid("798d1478-f4eb-44f1-9cc0-ef6072d66929"), "Cerveja Lager", 15.00m },
+                    { new Guid("9294b1bb-887d-460c-bb67-7a175c11d99f"), "Cerveja Stout", 25.00m },
+                    { new Guid("ca7f8f7a-eea7-420f-88b9-003085a542c4"), "Cerveja IPA", 20.00m }
                 });
 
             migrationBuilder.InsertData(
@@ -163,11 +163,11 @@ namespace Ambev.DeveloperEvaluation.ORM.Migrations
                 columns: new[] { "Id", "BranchId", "CustomerId", "SaleDate", "SaleNumber", "Status", "TotalSaleAmount" },
                 values: new object[,]
                 {
-                    { new Guid("4330fabe-a073-47ba-b0d5-3ef3d493f27f"), new Guid("bf09bfe9-9c9a-4b63-b5bb-e730c3cb554d"), new Guid("2687ed9b-55ab-4d2f-93be-dd395efa71b5"), new DateTime(2025, 2, 14, 16, 11, 38, 34, DateTimeKind.Utc).AddTicks(9021), "S0003", "NotCancelled", 200.00m },
-                    { new Guid("43746cdf-eb34-441c-a0eb-a9383287fc38"), new Guid("633847d6-b6ba-47b5-a356-6cb1148a31f2"), new Guid("fa0199d1-a031-4e83-819b-ff935c1ea924"), new DateTime(2025, 2, 14, 16, 11, 38, 34, DateTimeKind.Utc).AddTicks(9028), "S0005", "NotCancelled", 300.00m },
-                    { new Guid("4c0befa3-c729-443b-a5f7-c418fb288646"), new Guid("efa78f83-59bf-4802-bbb2-7851b42cd8bc"), new Guid("3bbf47b0-10a6-4dcd-857a-f52750260296"), new DateTime(2025, 2, 14, 16, 11, 38, 34, DateTimeKind.Utc).AddTicks(9024), "S0004", "NotCancelled", 100.00m },
-                    { new Guid("6611af78-5c48-4f06-8ae8-9ed161b1f6f6"), new Guid("633847d6-b6ba-47b5-a356-6cb1148a31f2"), new Guid("0fe5c3bf-1505-4985-ab26-2940226a034b"), new DateTime(2025, 2, 14, 16, 11, 38, 34, DateTimeKind.Utc).AddTicks(9018), "S0002", "NotCancelled", 240.00m },
-                    { new Guid("9a0c10a6-ef7e-46c7-a672-b0e0b0927ee8"), new Guid("efa78f83-59bf-4802-bbb2-7851b42cd8bc"), new Guid("5a236e83-530e-473b-b9f0-59c0a4ff95d6"), new DateTime(2025, 2, 14, 16, 11, 38, 34, DateTimeKind.Utc).AddTicks(9009), "S0001", "NotCancelled", 80.00m }
+                    { new Guid("034c5068-7e9b-43f7-9db8-7304309719a3"), new Guid("d4ee3913-6610-4680-aa9b-0ad1d5a5e4ec"), new Guid("c2b2006a-fa9c-4f5b-9186-d41edfeac055"), new DateTime(2025, 2, 15, 23, 20, 3, 407, DateTimeKind.Utc).AddTicks(6388), "S0005", "NotCancelled", 300.00m },
+                    { new Guid("7f6e73d8-1b61-4459-a1df-a374c0939c42"), new Guid("42f52c7c-c384-4940-90aa-473ad27ccf70"), new Guid("772043ab-e6a8-4810-9b9f-55b17c1f6093"), new DateTime(2025, 2, 15, 23, 20, 3, 407, DateTimeKind.Utc).AddTicks(6372), "S0001", "NotCancelled", 80.00m },
+                    { new Guid("87de74ae-0012-4555-9d20-1555a5d2b276"), new Guid("d4ee3913-6610-4680-aa9b-0ad1d5a5e4ec"), new Guid("28365b82-b6f5-42b6-9bf6-7fa4ec25cc60"), new DateTime(2025, 2, 15, 23, 20, 3, 407, DateTimeKind.Utc).AddTicks(6378), "S0002", "NotCancelled", 240.00m },
+                    { new Guid("a16b758b-2a2b-43cd-b290-34679290d274"), new Guid("42f52c7c-c384-4940-90aa-473ad27ccf70"), new Guid("d55e14bb-096c-4728-b82e-5a82db940a82"), new DateTime(2025, 2, 15, 23, 20, 3, 407, DateTimeKind.Utc).AddTicks(6385), "S0004", "NotCancelled", 100.00m },
+                    { new Guid("c9bfb56e-2220-4a9a-8b02-3165d1a8a54e"), new Guid("acf14adc-0f5b-41f5-af82-fb1590175751"), new Guid("564124a7-c362-4581-9515-32462ed6ae89"), new DateTime(2025, 2, 15, 23, 20, 3, 407, DateTimeKind.Utc).AddTicks(6381), "S0003", "NotCancelled", 200.00m }
                 });
 
             migrationBuilder.InsertData(
@@ -175,11 +175,11 @@ namespace Ambev.DeveloperEvaluation.ORM.Migrations
                 columns: new[] { "Id", "Discount", "ProductId", "Quantity", "SaleId", "TotalAmount" },
                 values: new object[,]
                 {
-                    { new Guid("12649b5b-add1-4b1c-9b1c-3db6a82b0dce"), 0.20m, new Guid("eb693d8d-753c-46ee-9ebb-1c439b3f6401"), 10, new Guid("6611af78-5c48-4f06-8ae8-9ed161b1f6f6"), 200.0000m },
-                    { new Guid("2eb756d4-190a-47ea-bcd9-156727788929"), 0.20m, new Guid("eb693d8d-753c-46ee-9ebb-1c439b3f6401"), 15, new Guid("43746cdf-eb34-441c-a0eb-a9383287fc38"), 300.0000m },
-                    { new Guid("5fbff848-ea92-4699-81ee-780aa1c6d242"), 0.10m, new Guid("65f47bfa-848b-4be6-ba19-a26fba4383be"), 4, new Guid("9a0c10a6-ef7e-46c7-a672-b0e0b0927ee8"), 72.0000m },
-                    { new Guid("83169228-14f7-41d4-be25-ae1f9988cf8d"), 0.00m, new Guid("65f47bfa-848b-4be6-ba19-a26fba4383be"), 3, new Guid("4c0befa3-c729-443b-a5f7-c418fb288646"), 60.00m },
-                    { new Guid("ffeafcc2-f2a7-4b90-92f8-ff2ac65b8fa9"), 0.20m, new Guid("2e0dd60a-a35e-415b-b206-6c7e5f3f4a1c"), 13, new Guid("4330fabe-a073-47ba-b0d5-3ef3d493f27f"), 156.0000m }
+                    { new Guid("18469eb8-36b5-473c-9c52-e8dba8992198"), 0.20m, new Guid("9294b1bb-887d-460c-bb67-7a175c11d99f"), 10, new Guid("87de74ae-0012-4555-9d20-1555a5d2b276"), 200.0000m },
+                    { new Guid("4c2192ee-1512-4125-8c09-e867c08d8ac9"), 0.00m, new Guid("ca7f8f7a-eea7-420f-88b9-003085a542c4"), 3, new Guid("a16b758b-2a2b-43cd-b290-34679290d274"), 60.00m },
+                    { new Guid("970082f1-5fb3-4299-a666-712afb76b97f"), 0.20m, new Guid("798d1478-f4eb-44f1-9cc0-ef6072d66929"), 13, new Guid("c9bfb56e-2220-4a9a-8b02-3165d1a8a54e"), 156.0000m },
+                    { new Guid("b32dfe36-862c-45d8-9d1f-5823f4ffa596"), 0.10m, new Guid("ca7f8f7a-eea7-420f-88b9-003085a542c4"), 4, new Guid("7f6e73d8-1b61-4459-a1df-a374c0939c42"), 72.0000m },
+                    { new Guid("f93805f8-bc40-47ed-a447-5a5da6f673e6"), 0.20m, new Guid("9294b1bb-887d-460c-bb67-7a175c11d99f"), 15, new Guid("034c5068-7e9b-43f7-9db8-7304309719a3"), 300.0000m }
                 });
 
             migrationBuilder.CreateIndex(

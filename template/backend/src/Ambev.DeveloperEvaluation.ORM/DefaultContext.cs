@@ -109,18 +109,18 @@ public static class SeedData
 
         var branches = new[]
         {
-            new Branch { Id = Guid.NewGuid(), BranchName = "Cervejaria Alpha", Location = "São Paulo" },
-            new Branch { Id = Guid.NewGuid(), BranchName = "Cervejaria Beta", Location = "Rio de Janeiro" },
-            new Branch { Id = Guid.NewGuid(), BranchName = "Cervejaria Gamma", Location = "Belo Horizonte" }
+            new Branch { Id = Guid.NewGuid(), Name = "Cervejaria Alpha", Location = "São Paulo" },
+            new Branch { Id = Guid.NewGuid(), Name = "Cervejaria Beta", Location = "Rio de Janeiro" },
+            new Branch { Id = Guid.NewGuid(), Name = "Cervejaria Gamma", Location = "Belo Horizonte" }
         };
 
         modelBuilder.Entity<Branch>().HasData(branches);
 
         var products = new[]
         {
-            new Product { Id = Guid.NewGuid(), ProductName = "Cerveja IPA", UnitPrice = 20.00M },
-            new Product { Id = Guid.NewGuid(), ProductName = "Cerveja Stout", UnitPrice = 25.00M },
-            new Product { Id = Guid.NewGuid(), ProductName = "Cerveja Lager", UnitPrice = 15.00M }
+            new Product { Id = Guid.NewGuid(), Name = "Cerveja IPA", UnitPrice = 20.00M },
+            new Product { Id = Guid.NewGuid(), Name = "Cerveja Stout", UnitPrice = 25.00M },
+            new Product { Id = Guid.NewGuid(), Name = "Cerveja Lager", UnitPrice = 15.00M }
         };
 
         modelBuilder.Entity<Product>().HasData(products);
