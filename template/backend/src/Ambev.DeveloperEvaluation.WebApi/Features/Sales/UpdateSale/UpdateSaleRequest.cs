@@ -1,18 +1,10 @@
-﻿using Ambev.DeveloperEvaluation.Domain.Enums;
+﻿using Ambev.DeveloperEvaluation.Domain.Common;
+using Ambev.DeveloperEvaluation.Domain.Enums;
 
-namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales.CreateSale
+namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales.UpdateSale
 {
-    public class CreateSaleRequest
+    public class UpdateSaleRequest : BaseEntity
     {
-        /// <summary>
-        /// Gets or sets the sale number to be created.
-        /// </summary>
-        public string SaleNumber { get; set; } = string.Empty;
-
-        /// <summary>
-        /// Gets or sets the date of the sale.
-        /// </summary>
-        public DateTime SaleDate { get; set; }
 
         /// <summary>
         /// Gets or sets the customer's id referenced.
@@ -37,6 +29,6 @@ namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales.CreateSale
         /// <summary>
         /// Gets or sets the items of sale.
         /// </summary>
-        public List<CreateSaleItemRequest> Items { get; set; } = new List<CreateSaleItemRequest>();
+        public List<UpdateSaleItemRequest> Items { get; set; } = new List<UpdateSaleItemRequest>();
     }
 }

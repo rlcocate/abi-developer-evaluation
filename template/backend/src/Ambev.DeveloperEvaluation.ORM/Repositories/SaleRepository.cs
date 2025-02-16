@@ -52,5 +52,109 @@ namespace Ambev.DeveloperEvaluation.ORM.Repositories
                 .ToListAsync(cancellationToken);
             return result;
         }
+        
+        /// <summary>
+        /// Retrieves a sale by their unique identifier
+        /// </summary>
+        /// <param name="id">The unique identifier of the sale</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>The sale if found, null otherwise</returns>
+        public async Task<Sale?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
+        {
+            return await _context.Sales.FirstOrDefaultAsync(o => o.Id == id, cancellationToken);
+        }
+        
+        /// <summary>
+        /// Creates a new sale in the database
+        /// </summary>
+        /// <param name="sale">The sale to create</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>The created sale</returns>
+        public async Task<Sale> CreateAsync(Sale sale, CancellationToken cancellationToken = default)
+        {
+            await _context.Sales.AddAsync(sale, cancellationToken);
+            await _context.SaveChangesAsync(cancellationToken);
+            return sale;
+        }
+        
+        /// <summary>
+        ///  Updates an existing sale in the database
+        /// </summary>
+        /// <param name="sale">The sale to update</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>The updated sale</returns>
+        /// <exception cref="InvalidOperationException"></exception>        
+        public async Task<Sale> UpdateAsync(Sale sale, CancellationToken cancellationToken = default)
+        {
+            var existingSale = await _context.Sales
+                .Include(s => s.Items)
+                .FirstOrDefaultAsync(s => s.Id == sale.Id, cancellationToken);
+
+            if (existingSale == null)
+            {
+                throw new InvalidOperationException($"Sale with id {sale.Id} not found");
+            }
+
+            // Atualizar propriedades da Sale
+            existingSale.CustomerId = sale.CustomerId;
+            existingSale.BranchId = sale.BranchId;
+            existingSale.TotalSaleAmount = sale.TotalSaleAmount;
+            existingSale.Status = sale.Status;
+
+            // Atualizar Items
+            foreach (var item in sale.Items)
+            {
+                var existingItem = existingSale.Items.FirstOrDefault(si => si.Id == item.Id);
+
+                if (existingItem != null)
+                {
+                    // Atualizar item existente
+                    existingItem.ProductId = item.ProductId;
+                    existingItem.Quantity = item.Quantity;
+                    existingItem.Discount = item.Discount;
+                    existingItem.TotalAmount = item.TotalAmount;
+                    // Não precisa definir o estado do `existingItem`, pois ele já está sendo rastreado
+                }
+                else
+                {
+                    // Adicionar novo item e definir o SaleId corretamente
+                    item.SaleId = existingSale.Id;
+                    // Adicionar ao contexto do Entity Framework
+                    _context.Entry(item).State = EntityState.Added;
+                }
+            }
+
+            // Remover Items que não estão mais presentes
+            foreach (var existingItem in existingSale.Items.ToList())
+            {
+                if (!sale.Items.Any(si => si.Id == existingItem.Id))
+                {
+                    // Remover o item do contexto do Entity Framework
+                    _context.SaleItems.Remove(existingItem);
+                }
+            }
+
+            await _context.SaveChangesAsync(cancellationToken);
+
+            return existingSale;
+        }
+
+
+        /// <summary>
+        /// Deletes a sale from the database
+        /// </summary>
+        /// <param name="id">The unique identifier of the sale to delete</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>True if the sale was deleted, false if not found</returns>
+        public async Task<bool> DeleteAsync(Guid id, CancellationToken cancellationToken = default)
+        {
+            var sale = await GetByIdAsync(id, cancellationToken);
+            if (sale == null)
+                return false;
+
+            _context.Sales.Remove(sale);
+            await _context.SaveChangesAsync(cancellationToken);
+            return true;
+        }
     }
 }

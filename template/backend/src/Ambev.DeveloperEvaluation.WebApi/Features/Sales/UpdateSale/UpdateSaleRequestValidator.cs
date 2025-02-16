@@ -1,18 +1,12 @@
 ﻿using Ambev.DeveloperEvaluation.Domain.Enums;
 using FluentValidation;
 
-namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales.CreateSale
+namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales.UpdateSale
 {
-    public class CreateSaleRequestValidator : AbstractValidator<CreateSaleRequest>
+    public class UpdateSaleRequestValidator : AbstractValidator<UpdateSaleRequest>
     {
-        public CreateSaleRequestValidator()
+        public UpdateSaleRequestValidator()
         {
-            RuleFor(sale => sale.SaleNumber)
-                .NotEmpty().WithMessage("Sale number needs to be filled.");
-
-            RuleFor(sale => sale.SaleDate)
-                .NotEmpty().WithMessage("Sale date needs to be filled.");
-
             RuleFor(sale => sale.CustomerId)
                 .NotNull().WithMessage("Customer ID is required.");
 
@@ -28,7 +22,7 @@ namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales.CreateSale
             RuleFor(sale => sale.Status)
                 .IsInEnum().WithMessage("Sale status cannot be unknown.");
 
-            RuleForEach(sale => sale.Items).SetValidator(new CreateSaleItemRequestValidator());
+            RuleForEach(sale => sale.Items).SetValidator(new UpdateSaleItemRequestValidator());
         }
     }
 }

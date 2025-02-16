@@ -7,12 +7,6 @@ namespace Ambev.DeveloperEvaluation.Domain.Validation
     {
         public SaleItemValidator()
         {
-            RuleFor(item => item.Sale)
-                .NotNull().WithMessage("Sale information is required.");
-
-            RuleFor(item => item.Product)
-                .NotNull().WithMessage("Product information is required.");
-
             RuleFor(item => item.Quantity)
                 .GreaterThan(0).WithMessage("Quantity must be greater than 0.");
 
