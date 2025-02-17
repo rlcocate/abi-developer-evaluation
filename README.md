@@ -9,6 +9,7 @@ For testing, XUnit was used. The databases are running on **Docker**.
 
 - [Main Resources](#main-resources)
 - [Stacks](#stacks)
+- [Entity Framework Settings](#entity-framework-settings)
 - [Run tests](#run-tests)
 
 
